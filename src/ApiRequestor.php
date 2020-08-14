@@ -2,28 +2,19 @@
 
 namespace SteadfastCollective\LaravelVend;
 
-use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
 use SteadfastCollective\LaravelVend\Models\ApiResponse;
 
 class ApiRequestor
 {
-     /** @var \GuzzleHttp\Client */
     protected $client;
+    protected $baseUrl;
 
-    /**
-     * Create a new Vend Instance.
-     */
     public function __construct($host = "vendhq.com", $path = "api/2.0", $protocol = "https", $prefix = null)
     {
         $prefix = $prefix !== null ? $prefix : config('vend.domain_prefix');
 
-        $this->client = new Client([
-            "base_url" => "{$protocol}://{$prefix}.{$host}/{$path}/",
-            // 'base_url' => 'https://hampshireculturaltrust.vendhq.com/api/2.0/',
-            "headers" => [
-                "Authorization" => "Bearer ".config('vend.personal_token'),
-            ],
-        ]);
+        $this->baseUrl = "{$protocol}://{$prefix}.{$host}/{$path}/";
     }
 
     public function request($method, $endpoint, $data)
@@ -58,9 +49,15 @@ class ApiRequestor
                 break;
         };
 
-        $response = $this->client->request($method, '/', $payload);
+        $endpoint = $this->baseUrl . $endpoint;
 
-        return $this->formatResponse($response);
+        $headers = [
+            'Authorization' => 'Bearer ' . config('vend.personal_token'),
+        ];
+
+        return Http::withHeaders($headers)
+            ->{$method}($endpoint, $payload)
+            ->json();
     }
 
     public function get($endpoint, $data)
