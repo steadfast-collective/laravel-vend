@@ -32,6 +32,11 @@ use SteadfastCollective\LaravelVend\Repositories\CustomerRepository;
 return CustomerRepository::index([]);
 ```
 
+Regarding pagination, you need to provide the `after` parameter and give it the `version.max` value from the last request.
+
+## To Do
+* Rate limiting, deal with it https://docs.vendhq.com/reference/introduction/rate-limiting
+
 ### Testing
 
 ``` bash

@@ -26,9 +26,9 @@ class ApiRequestor
         ];
 
         $data = array_merge([
-            'page' => 1,
-            'page_size' => 10,
+            'page_size' => 1,
         ], $data);
+
 
         return Http::withHeaders($headers)
             ->{$method}($endpoint, $data)
