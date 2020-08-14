@@ -1,0 +1,56 @@
+{
+    "name": "steadfastcollective/laravel-vend",
+    "description": "Laravel Vend is a Laravel package to help communicate with the Vend ePOS API.",
+    "keywords": [
+        "steadfastcollective",
+        "vend"
+    ],
+    "homepage": "https://github.com/steadfastcollective/laravel-vend",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steadfast Collective",
+            "email": "dev@steadfastcollective.com",
+            "homepage": "https://steadfastcollective.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/log": "~5.8.0|^6.0|^7.0",
+        "illuminate/http": "~5.8.0|^6.0|^7.0",
+        "illuminate/support": "~5.8.0|^6.0|^7.0",
+        "illuminate/routing": "~5.8.0|^6.0|^7.0",
+        "illuminate/events": "~5.8.0|^6.0|^7.0",
+        "illuminate/queue": "~5.8.0|^6.0|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SteadfastCollective\\LaravelVend\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SteadfastCollective\\LaravelVend\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SteadfastCollective\\LaravelVend\\VendServiceProvider"
+            ]
+        }
+    }
+}
