@@ -19,44 +19,19 @@ class ApiRequestor
 
     public function request($method, $endpoint, $data)
     {
-        switch ($method) {
-            case 'GET':
-                $payload = [
-                    "query" => $data
-                ];
-                break;
-
-            case 'POST':
-                $payload = [
-                    "form_params" => $data
-                ];
-                break;
-
-            case 'DELETE':
-                $payload = [
-                    "form_params" => $data
-                ];
-                break;
-
-            case 'PUT':
-                $payload = [
-                    "form_params" => $data
-                ];
-                break;
-
-            default:
-                $payload = [];
-                break;
-        };
-
         $endpoint = $this->baseUrl . $endpoint;
 
         $headers = [
             'Authorization' => 'Bearer ' . config('vend.personal_token'),
         ];
 
+        $data = array_merge([
+            'page' => 1,
+            'page_size' => 10,
+        ], $data);
+
         return Http::withHeaders($headers)
-            ->{$method}($endpoint, $payload)
+            ->{$method}($endpoint, $data)
             ->json();
     }
 
