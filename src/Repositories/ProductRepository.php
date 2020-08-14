@@ -6,7 +6,7 @@ use SteadfastCollective\LaravelVend\ApiRequestor;
 
 class ProductRepository
 {
-    private static $baseUrl = "products/";
+    private static $baseUrl = "products";
 
     public static function index($filters)
     {

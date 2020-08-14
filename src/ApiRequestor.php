@@ -13,12 +13,16 @@ class ApiRequestor
     /**
      * Create a new Vend Instance.
      */
-    public function __construct($host = "api.digitickets.co.uk", $path = "api/2.0", $protocol = "https", $prefix = null)
+    public function __construct($host = "vendhq.com", $path = "api/2.0", $protocol = "https", $prefix = null)
     {
         $prefix = $prefix !== null ? $prefix : config('vend.domain_prefix');
 
         $this->client = new Client([
-            'base_url' => "{$protocol}://{$prefix}.{$host}/{$path}/",
+            "base_url" => "{$protocol}://{$prefix}.{$host}/{$path}/",
+            // 'base_url' => 'https://hampshireculturaltrust.vendhq.com/api/2.0/',
+            "headers" => [
+                "Authorization" => "Bearer ".config('vend.personal_token'),
+            ],
         ]);
     }
 
@@ -52,13 +56,9 @@ class ApiRequestor
             default:
                 $payload = [];
                 break;
-        }
+        };
 
-        $payload['headers'] = [
-            'Authorization' => "Bearer ".config('vend.personal_token'),
-        ];
-
-        $response = $this->client->request($method, $endpoint, $payload);
+        $response = $this->client->request($method, '/', $payload);
 
         return $this->formatResponse($response);
     }
