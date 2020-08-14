@@ -2,20 +2,19 @@
 
 namespace SteadfastCollective\LaravelVend\Repositories;
 
-use Illuminate\Support\Facades\URL;
 use SteadfastCollective\LaravelVend\ApiRequestor;
 
-class PaymentChannelRepository
+class SalesRepository
 {
-    private static $baseUrl = "paymentchannels/";
+    private static $baseUrl = "sales/";
 
     public static function index($filters)
     {
         return resolve(ApiRequestor::class)->get(self::$baseUrl, $filters);
     }
 
-    public static function create($data)
+    public static function show($thirdPartyID, $data)
     {
-        return resolve(ApiRequestor::class)->post(self::$baseUrl, $data);
+        return resolve(ApiRequestor::class)->get(self::$baseUrl.$thirdPartyID, $data);
     }
 }

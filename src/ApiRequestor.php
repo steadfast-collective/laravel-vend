@@ -13,24 +13,17 @@ class ApiRequestor
     /**
      * Create a new Vend Instance.
      */
-    public function __construct($host = "api.digitickets.co.uk", $path = null, $protocol = "https")
+    public function __construct($host = "api.digitickets.co.uk", $path = "api/2.0", $protocol = "https", $prefix = null)
     {
+        $prefix = $prefix !== null ? $prefix : config('vend.domain_prefix');
 
-
-        $this->client = new Client(["base_uri" => "{$protocol}://{$host}/{$path}/"]);
+        $this->client = new Client([
+            'base_url' => "{$protocol}://{$prefix}.{$host}/{$path}/",
+        ]);
     }
 
     public function request($method, $endpoint, $data)
     {
-        $data = array_merge(
-            [
-    			"apiKey" => config("digitickets.key"),
-    			"limit" => 10,
-                "page" => 1,
-            ],
-            $data
-        );
-
         switch ($method) {
             case 'GET':
                 $payload = [
@@ -60,6 +53,10 @@ class ApiRequestor
                 $payload = [];
                 break;
         }
+
+        $payload['headers'] = [
+            'Authorization' => "Bearer ".config('vend.personal_token'),
+        ];
 
         $response = $this->client->request($method, $endpoint, $payload);
 
