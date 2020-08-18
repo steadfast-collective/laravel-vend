@@ -3,6 +3,7 @@
 namespace SteadfastCollective\LaravelVend;
 
 use Illuminate\Support\Facades\Http;
+use SteadfastCollective\LaravelVend\Exceptions\VendRateLimitedException;
 use SteadfastCollective\LaravelVend\Models\ApiResponse;
 
 class ApiRequestor
@@ -30,9 +31,16 @@ class ApiRequestor
         ], $data);
 
 
-        return Http::withHeaders($headers)
-            ->{$method}($endpoint, $data)
-            ->json();
+        $response = Http::withHeaders($headers)
+            ->{$method}($endpoint, $data);
+
+        switch ($response->status()) {
+            case '200':
+                return $response->json();
+
+            case '429':
+                throw new VendRateLimitedException($response->json()['error']);
+        }
     }
 
     public function get($endpoint, $data)
