@@ -26,7 +26,7 @@ class ApiRequestor
         ];
 
         $data = array_merge([
-            'page_size' => 1,
+            'page_size' => config('vend.page_size', 75),
         ], $data);
 
 
