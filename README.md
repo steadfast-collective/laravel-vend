@@ -15,7 +15,7 @@ If you need any others, feel free to [create a pull request](https://github.com/
 
 ## Installation
 
-1. Install via Composer - `composer require steadfastcollective/laravel-vend`
+1. Install via Composer `composer require steadfastcollective/laravel-vend`
 2. Publish Vend configuration file `php artisan vendor:publish --tag="vend-config"`
 
 ## Configuration
