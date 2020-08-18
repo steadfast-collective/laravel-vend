@@ -22,7 +22,7 @@ If you need any others, feel free to [create a pull request](https://github.com/
 
 During install, a `vend.php` configuration file is published to your application's `config` directory.
 
-```
+```php
 <?php
 
 return [
