@@ -15,11 +15,43 @@ If you need any others, feel free to [create a pull request](https://github.com/
 
 ## Installation
 
-You can install the package via composer:
+1. Install via Composer - `composer require steadfastcollective/laravel-vend`
+2. Publish Vend configuration file `php artisan vendor:publish --tag="vend-config"`
 
-```bash
-composer require steadfastcollective/laravel-vend
+## Configuration
+
+During install, a `vend.php` configuration file is published to your application's `config` directory.
+
 ```
+<?php
+
+return [
+
+    /**
+     * Authentication
+     *
+     * You'll need your Vend domain prefix and a personal access
+     * token in order to authenticate with the Vend API.
+     */
+    'domain_prefix' => env('VEND_DOMAIN_PREFIX'),
+    'personal_token' => env('VEND_API_TOKEN'),
+
+    /**
+     * Pagination
+     *
+     * Control the pagination limits when making requests with
+     * the Laravel Vend package.
+     */
+    'page_size' => 75,
+
+];
+```
+
+Here's a brief breakdown of each config option:
+
+* `domain_prefix` - Each Vend instance has its own subdomain, which we refer to as a domain prefix. For example if your Vend URL is `steadfastcollective.vendhq.com` then your domain prefix will be `steadfastcollective`.
+* `personal_token` should be a Personal Access Token created in the Vend system.
+* `page_size` determines the amount of items that should be returned by the Vend API per request.
 
 ## Usage
 
