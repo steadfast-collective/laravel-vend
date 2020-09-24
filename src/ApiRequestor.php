@@ -62,11 +62,4 @@ class ApiRequestor
     {
         return $this->request("PUT", $endpoint, $data);
     }
-
-    private function formatResponse($response)
-    {
-        return (new ApiResponse)
-            ->setHeaders($response->getHeaders())
-            ->setBody(json_decode((string) $response->getBody()));
-    }
 }
