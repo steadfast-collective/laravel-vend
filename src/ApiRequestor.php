@@ -2,6 +2,7 @@
 
 namespace SteadfastCollective\LaravelVend;
 
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Http;
 use SteadfastCollective\LaravelVend\Exceptions\VendRateLimitedException;
 
@@ -22,11 +23,11 @@ class ApiRequestor
         $endpoint = $this->baseUrl . $endpoint;
 
         $headers = [
-            'Authorization' => 'Bearer ' . config('vend.personal_token'),
+            'Authorization' => 'Bearer '.Config::get('vend.personal_token'),
         ];
 
         $data = array_merge([
-            'page_size' => config('vend.page_size', 75),
+            'page_size' => Config::get('vend.page_size', 75),
         ], $data);
 
 
