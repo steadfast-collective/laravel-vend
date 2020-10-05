@@ -20,8 +20,6 @@ class VendServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../config/vend.php', 'vend');
 
-        $this->app->singleton(ApiRequestor::class, function () {
-            return new ApiRequestor();
-        });
+        $this->app->bind('LaravelVend', ApiRequestor::class);
     }
 }

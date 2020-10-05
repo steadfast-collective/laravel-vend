@@ -2,8 +2,8 @@
 
 namespace SteadfastCollective\LaravelVend\Repositories;
 
-use SteadfastCollective\LaravelVend\ApiRequestor;
 use SteadfastCollective\LaravelVend\Contracts\TaxRepository as Contract;
+use SteadfastCollective\LaravelVend\LaravelVendFacade;
 
 class TaxRepository implements Contract
 {
@@ -11,6 +11,6 @@ class TaxRepository implements Contract
 
     public function index(array $filters = [])
     {
-        return resolve(ApiRequestor::class)->get(self::$baseUrl, $filters);
+        return LaravelVendFacade::get(self::$baseUrl, $filters);
     }
 }
