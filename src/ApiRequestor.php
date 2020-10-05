@@ -4,12 +4,11 @@ namespace SteadfastCollective\LaravelVend;
 
 use Illuminate\Support\Facades\Http;
 use SteadfastCollective\LaravelVend\Exceptions\VendRateLimitedException;
-use SteadfastCollective\LaravelVend\Models\ApiResponse;
 
 class ApiRequestor
 {
-    protected $client;
-    protected $baseUrl;
+    private $client;
+    private $baseUrl;
 
     public function __construct($host = "vendhq.com", $path = "api/2.0", $protocol = "https", $prefix = null)
     {
