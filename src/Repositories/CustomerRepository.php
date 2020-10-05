@@ -3,8 +3,9 @@
 namespace SteadfastCollective\LaravelVend\Repositories;
 
 use SteadfastCollective\LaravelVend\ApiRequestor;
+use SteadfastCollective\LaravelVend\Contracts\CustomerRepository as Contract;
 
-class CustomerRepository
+class CustomerRepository implements Contract
 {
     private static $baseUrl = "customers/";
 

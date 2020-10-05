@@ -3,8 +3,9 @@
 namespace SteadfastCollective\LaravelVend\Repositories;
 
 use SteadfastCollective\LaravelVend\ApiRequestor;
+use SteadfastCollective\LaravelVend\Contracts\OutletRepository as Contract;
 
-class OutletRepository
+class OutletRepository implements Contract
 {
     private static $baseUrl = "outlets/";
 

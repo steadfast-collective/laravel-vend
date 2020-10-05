@@ -3,8 +3,9 @@
 namespace SteadfastCollective\LaravelVend\Repositories;
 
 use SteadfastCollective\LaravelVend\ApiRequestor;
+use SteadfastCollective\LaravelVend\Contracts\TaxRepository as Contract;
 
-class TaxRepository
+class TaxRepository implements Contract
 {
     private static $baseUrl = "taxes/";
 
