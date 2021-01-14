@@ -1,5 +1,7 @@
 # Laravel Vend
 
+**Still in development.**
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/steadfastcollective/laravel-vend.svg?style=flat-square)](https://packagist.org/packages/steadfastcollective/laravel-vend)
 [![Build Status](https://img.shields.io/travis/steadfastcollective/laravel-vend/master.svg?style=flat-square)](https://travis-ci.org/steadfastcollective/laravel-vend)
 [![Quality Score](https://img.shields.io/scrutinizer/g/steadfastcollective/laravel-vend.svg?style=flat-square)](https://scrutinizer-ci.com/g/steadfastcollective/laravel-vend)
